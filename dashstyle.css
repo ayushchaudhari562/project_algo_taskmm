@@ -1,0 +1,237 @@
+/* Dashboard Specific Styles */
+.dashboard-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin: 30px 0;
+}
+
+.dbt {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 25px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    border-left: 5px solid #4CAF50;
+}
+
+.dbt:nth-child(1) {
+    border-left-color: #2196F3;
+}
+
+.dbt:nth-child(2) {
+    border-left-color: #ffa726;
+}
+
+.dbt:nth-child(3) {
+    border-left-color: #4CAF50;
+}
+
+.dbt:nth-child(4) {
+    border-left-color: #9c27b0;
+}
+
+.dbt:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.dbt h3 {
+    margin: 0 0 10px 0;
+    font-size: 16px;
+    color: #666;
+    font-weight: 500;
+}
+
+.stat-number {
+    font-size: 36px;
+    font-weight: bold;
+    margin: 10px 0;
+    color: #2c3e50;
+}
+
+.stat-label {
+    font-size: 14px;
+    color: #999;
+}
+
+.dashboard-progress {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 25px;
+    border-radius: 15px;
+    margin: 20px 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-progress h2 {
+    margin: 0 0 15px 0;
+    color: #2c3e50;
+}
+
+#progress-text {
+    text-align: center;
+    margin-top: 10px;
+    font-weight: 600;
+    color: #666;
+}
+
+.dashboard-activity {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 25px;
+    border-radius: 15px;
+    margin: 20px 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-activity h2 {
+    margin: 0 0 15px 0;
+    color: #2c3e50;
+}
+
+#recent-tasks-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.activity-item {
+    padding: 12px 15px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    border-left: 4px solid #2196F3;
+    transition: all 0.3s ease;
+}
+
+.activity-item:hover {
+    transform: translateX(5px);
+    background: #e9ecef;
+}
+
+.activity-item strong {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.quick-actions {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 25px;
+    border-radius: 15px;
+    margin: 20px 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.quick-actions h2 {
+    margin: 0 0 20px 0;
+    color: #2c3e50;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.action-btn {
+    padding: 15px 30px;
+    background: linear-gradient(135deg, #4CAF50, #66bb6a);
+    color: white;
+    text-decoration: none;
+    border-radius: 10px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(76, 175, 80, 0.3);
+}
+
+.action-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(76, 175, 80, 0.4);
+}
+
+.action-btn:nth-child(2) {
+    background: linear-gradient(135deg, #2196F3, #42a5f5);
+    box-shadow: 0 4px 10px rgba(33, 150, 243, 0.3);
+}
+
+.action-btn:nth-child(3) {
+    background: linear-gradient(135deg, #ffa726, #ffb74d);
+    box-shadow: 0 4px 10px rgba(255, 167, 38, 0.3);
+}
+
+/* Dark Mode for Dashboard */
+body.dark-mode .dbt,
+body.dark-mode .dashboard-progress,
+body.dark-mode .dashboard-activity,
+body.dark-mode .quick-actions {
+    background: rgba(30, 30, 46, 0.8);
+    color: #e0e0e0;
+}
+
+body.dark-mode .dbt h3,
+body.dark-mode .dashboard-progress h2,
+body.dark-mode .dashboard-activity h2,
+body.dark-mode .quick-actions h2 {
+    color: #e0e0e0;
+}
+
+body.dark-mode .stat-number {
+    color: #fff;
+}
+
+body.dark-mode .stat-label {
+    color: #aaa;
+}
+
+body.dark-mode .activity-item {
+    background: #1e1e2e;
+    color: #e0e0e0;
+    border-left-color: #667eea;
+}
+
+body.dark-mode .activity-item:hover {
+    background: #2a2a3e;
+}
+
+body.dark-mode #progress-text {
+    color: #e0e0e0;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .dashboard-stats {
+        grid-template-columns: 1fr;
+    }
+    
+    .action-buttons {
+        flex-direction: column;
+    }
+    
+    .action-btn {
+        width: 100%;
+        text-align: center;
+    }
+
+}
+#tttt{
+   
+    color: rgb(77, 74, 74);
+    background-color: #ffffff;
+    border-radius: 25px;
+    margin: 5px 0;
+
+}
+#tttt a {
+    color:#000000; 
+    opacity: 1;
+    text-decoration: none;
+}
+
+#tttt :hover {
+    color: rgb(79, 202, 48); 
+}
+
+#tttt a:visited {
+    color: #0000009f; 
+}

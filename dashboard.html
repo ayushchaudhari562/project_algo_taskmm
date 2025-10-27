@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="dashstyle.css">
+</head>
+<body>
+    
+   
+    <aside class="sidebar">
+        <h2 class="menu">Menu</h2>
+        <nav>
+            <ul>
+                <li id="tab-dashboard" class="active-tab"><a href="dashboard.html" style="color: #fdfdfd; text-decoration: none;">Dashboard</a></li>
+                <li id="tab-important"><a href="index.html" style="color: #fdfdfd; text-decoration: none;">Important</a></li>
+                <li id="tab-all"><a href="index.html" style="color: #fdfdfd; text-decoration: none;">All Tasks</a></li>
+                <li id="tab-completed">Completed</li>
+                <li id="tab-settings">Settings</li>
+            </ul>
+        </nav>
+        <div class="sidebar-footer">
+            <label class="dark-mode-toggle">
+                <input type="checkbox" id="dark-mode-checkbox">
+                <span>Dark Mode</span>
+            </label>
+            <p>Logged in as: YourName</p>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <div class="top">
+            <h1>📊 Dashboard Overview</h1>
+            <h4 class="date"></h4>
+        </div>
+
+        <div class="search-container">
+            <span class="search-icon">🔍︎</span>
+            <input type="search" placeholder="Search task here" class="search">
+        </div>
+
+        <!-- DashboardStatsCards -->
+        <section class="dashboard-stats">
+            <div class="dbt">
+                <h3>Total Tasks</h3>
+                <p class="stat-number" id="total-tasks">0</p>
+                <span class="stat-label">All time</span>
+            </div>
+            <div class="dbt">
+                <h3>Pending</h3>
+                <p class="stat-number" id="pending-tasks">0</p>
+                <span class="stat-label">To complete</span>
+            </div>
+            <div class="dbt">
+                <h3>Completed</h3>
+                <p class="stat-number" id="completed-tasks">0</p>
+                <span class="stat-label">Done</span>
+            </div>
+            <div class="dbt">
+                <h3>Completion Rate</h3>
+                <p class="stat-number" id="completion-rate">0%</p>
+                <span class="stat-label">Overall</span>
+            </div>
+        </section>
+
+ 
+        <section class="dashboard-progress">
+            <h2>Today's Progress</h2>
+            <div class="progress-container">
+                <div class="progress-bar" id="dashboard-progress-bar"></div>
+            </div>
+            <p id="progress-text">0 of 0 tasks completed</p>
+        </section>
+
+      
+        <section class="dashboard-activity">
+            <h2>Recent Tasks</h2>
+            <ul id="recent-tasks-list">
+                <li class="activity-item">No recent tasks</li>
+            </ul>
+        </section>
+
+       
+        <section class="quick-actions">
+            <h2>Quick Actions</h2>
+            <div class="action-buttons">
+                <a href="index.html" class="action-btn">➕ Add New Task</a>
+                <a href="index.html" class="action-btn">📋 View All Tasks</a>
+                <a href="index.html" class="action-btn">⭐ Important Tasks</a>
+            </div>
+        </section>
+    </main>
+
+    <canvas id="confetti-canvas"></canvas>
+
+    <footer  id="tttt"><a href="index.html">↶   ↷ Back to Ocean</a></footer>
+    <script src="dashboard.js"></script>
+</body>
+</html>

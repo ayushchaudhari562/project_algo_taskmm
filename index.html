@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project_1</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+
+
+   
+
+  <aside class="sidebar">
+    <h2 class="menu">Menu</h2>
+    <nav>
+        <ul>
+            <li id="tab-dashboard"><a href="dashboard.html">Dashboard</a></li>
+            <li id="tab-important" class="active-tab">Important</li>
+            <li id="tab-all">All Tasks</li>
+            <li id="tab-completed">Completed</li>
+            <li id="tab-settings">Settings</li>
+        </ul>
+    </nav>
+    <div class="sidebar-footer">
+        <div class="dark-mode-toggle">
+    <span>🌙 Dark Mode</span>
+    <label class="switch">
+        <input type="checkbox" id="dark-mode-checkbox">
+        <span class="slider"></span>
+    </label>
+</div>
+        <p>Logged in as: <span id="display-username">YourName</span></p>
+    </div>
+</aside>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+
+  <main class="main-content">
+    <div class="top">
+        <h1>Daily Task Planner</h1>
+        <h4 class="date"></h4>
+    </div>
+    
+
+    <p class="mq">
+        "Things work out best for those who make the best of how things work out." 
+    </p>
+    <div class="search-container">
+  <span class="search-icon">🔍︎</span>
+  <input type="search" placeholder="Search task here" class="search">
+</div>
+    
+<div class="task-stats">
+  <span>Pending: <strong id="pending-count">0</strong></span>
+  <span>Completed: <strong id="completed-count">0</strong></span>
+</div>
+
+<div class="progress-container">
+  <div class="progress-bar" id="progress-bar"></div>
+</div>
+
+    
+<div class="bordertext">
+<section class="task-input">
+  <h2 class="ant">Add New Task</h2>
+  <input type="text" id="task-name" placeholder="Task name" class="searchsm">
+  <input type="date" id="task-date" class="searchsm">
+  <input type="time" id="task-time" class="searchsm">
+  <select id="task-period" class="searchsm">
+    <option>Morning</option>
+    <option>Afternoon</option>
+    <option>Evening</option>
+  </select>
+  <select id="task-priority" class="searchsm">
+    <option>Low</option>
+    <option>Medium</option>
+    <option>High</option>
+  </select>
+  <select id="task-category" class="searchsm">
+    <option>CP/DSA</option>
+    <option>Personal</option>
+    <option>Academics</option>
+    <option>Other</option>
+  </select>
+  <button id="add-task-btn" class="searchsm">Add</button>
+</section>
+</div>
+
+
+<div class="ist-clock">
+    <div class="clock-icon">🕐</div>
+    <div class="clock-info">
+        <div class="current-time" id="ist-time">00:00:00</div>
+        <div class="clock-label">Indian Standard Time (IST)</div>
+    </div>
+</div>
+
+<section class="task-list">
+  <div class="task-header">
+    <h2>Today's Tasks</h2>
+    <div class="filter-buttons">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="pending">Pending</button>
+      <button class="filter-btn" data-filter="completed">Completed</button>
+    </div>
+  </div>
+  <ul id="tasks-container">
+   
+  </ul>
+</section>
+
+
+  </main>
+  
+  <footer>Here is your all task</footer>
+
+  <!-- MODAL POPUP -->
+  <div id="modal-overlay" class="modal-overlay">
+    <div class="modal-content">
+        <button class="modal-close">&times;</button>
+        <div id="modal-body"></div>
+    </div>
+  </div>
+    
+    <canvas id="confetti-canvas"></canvas>
+    <script src="script.js"></script>
+</body>
+</html>
