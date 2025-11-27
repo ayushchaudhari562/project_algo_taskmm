@@ -5,7 +5,6 @@ if (dateElement) {
   dateElement.textContent = today.toLocaleDateString("en-US", options);
 }
 
-
 const sidebar = document.querySelector(".sidebar");
 const toggleBtn = document.createElement("div");
 toggleBtn.className = "toggle-btn";
@@ -20,7 +19,6 @@ toggleBtn.addEventListener("click", () => {
   sidebar.classList.toggle("collapsed");
 });
 
-// MODAL FUNCTIONS
 const modalOverlay = document.getElementById('modal-overlay');
 const modalBody = document.getElementById('modal-body');
 const modalClose = document.querySelector('.modal-close');
@@ -34,19 +32,14 @@ function closeModal() {
   modalOverlay.classList.remove('active');
 }
 
-if (modalClose) {
-  modalClose.addEventListener('click', closeModal);
-}
+if (modalClose) modalClose.addEventListener('click', closeModal);
 
 if (modalOverlay) {
   modalOverlay.addEventListener('click', (e) => {
-    if (e.target === modalOverlay) {
-      closeModal();
-    }
+    if (e.target === modalOverlay) closeModal();
   });
 }
 
-// Sidebar tabs - NOW OPENS POPUPS
 const tabs = document.querySelectorAll(".sidebar ul li");
 const sections = document.querySelectorAll(".content-section");
 
@@ -57,11 +50,9 @@ tabs.forEach(tab => {
     
     const tabId = tab.id;
     
-    // Open modals for each tab (except dashboard which has a link)
     if (tabId === 'tab-important') {
       const importantTasks = tasks.filter(t => t.priority === 'High' && !t.completed);
       let content = '<h2>⭐ Important Tasks</h2>';
-      
       if (importantTasks.length === 0) {
         content += '<div class="modal-task-item">No high priority tasks! 🎉</div>';
       } else {
@@ -79,7 +70,6 @@ tabs.forEach(tab => {
     
     else if (tabId === 'tab-all') {
       let content = '<h2>📋 All Tasks</h2>';
-      
       if (tasks.length === 0) {
         content += '<div class="modal-task-item">No tasks yet. Add some tasks!</div>';
       } else {
@@ -102,7 +92,6 @@ tabs.forEach(tab => {
     else if (tabId === 'tab-completed') {
       const completedTasks = tasks.filter(t => t.completed);
       let content = '<h2>✅ Completed Tasks</h2>';
-      
       if (completedTasks.length === 0) {
         content += '<div class="modal-task-item">No completed tasks yet. Keep going! 💪</div>';
       } else {
@@ -139,7 +128,6 @@ tabs.forEach(tab => {
   });
 });
 
-// Settings functions
 function updateUsername() {
   const usernameInput = document.getElementById('username-input-modal');
   const newUsername = usernameInput ? usernameInput.value.trim() : '';
@@ -165,26 +153,20 @@ sections.forEach((sec, index) => {
   sec.style.display = index === 0 ? "block" : "none";
 });
 
-// Search icon toggle
 const icon = document.querySelector(".search-icon");
 const input = document.querySelector(".search");
 
 if (icon && input) {
   icon.addEventListener("click", () => {
     input.classList.toggle("active");
-    if (input.classList.contains("active")) {
-      input.focus();
-    } else {
-      input.blur();
-    }
+    if (input.classList.contains("active")) input.focus();
+    else input.blur();
   });
 }
 
-// Task array
 let tasks = [];
 let currentFilter = 'all';
 
-// Load tasks from localStorage
 function loadTasks() {
   const savedTasks = localStorage.getItem('tasks');
   if (savedTasks) {
@@ -192,24 +174,20 @@ function loadTasks() {
     renderTasks();
   }
   
-  // Load username
   const savedUsername = localStorage.getItem('username');
   if (savedUsername) {
     document.getElementById('display-username').textContent = savedUsername;
   }
 }
 
-// Save tasks to localStorage
 function saveTasks() {
   localStorage.setItem('tasks', JSON.stringify(tasks));
 }
 
-// Generate unique ID
 function generateId() {
   return Date.now().toString(36) + Math.random().toString(36).substr(2);
 }
 
-// Add task
 const addTaskBtn = document.getElementById('add-task-btn');
 if (addTaskBtn) {
   addTaskBtn.addEventListener('click', function() {
@@ -240,14 +218,12 @@ if (addTaskBtn) {
     saveTasks();
     renderTasks();
 
-    // Clear inputs
     document.getElementById('task-name').value = '';
     document.getElementById('task-date').value = '';
     document.getElementById('task-time').value = '';
   });
 }
 
-// Render tasks
 function renderTasks(filter = 'all') {
   const container = document.getElementById('tasks-container');
   if (!container) return;
@@ -291,7 +267,6 @@ function renderTasks(filter = 'all') {
   addDragListeners();
 }
 
-// Update stats and progress
 function updateStats() {
   const totalTasks = tasks.length;
   const completedTasks = tasks.filter(task => task.completed).length;
@@ -307,15 +282,10 @@ function updateStats() {
   const progress = totalTasks > 0 ? (completedTasks / totalTasks) * 100 : 0;
   if (progressBar) progressBar.style.width = progress + '%';
 
-  // Confetti if all tasks completed
-  if (totalTasks > 0 && completedTasks === totalTasks) {
-    triggerConfetti();
-  }
+  if (totalTasks > 0 && completedTasks === totalTasks) triggerConfetti();
 }
 
-// Add event listeners to tasks
 function addTaskEventListeners() {
-  // Checkbox toggle
   document.querySelectorAll('.task-checkbox').forEach(checkbox => {
     checkbox.addEventListener('change', function() {
       const taskId = this.dataset.id;
@@ -328,7 +298,6 @@ function addTaskEventListeners() {
     });
   });
 
-  // Delete button
   document.querySelectorAll('.delete-btn').forEach(btn => {
     btn.addEventListener('click', function() {
       const taskId = this.dataset.id;
@@ -338,7 +307,6 @@ function addTaskEventListeners() {
     });
   });
 
-  // Edit button
   document.querySelectorAll('.edit-btn').forEach(btn => {
     btn.addEventListener('click', function() {
       const taskId = this.dataset.id;
@@ -355,7 +323,6 @@ function addTaskEventListeners() {
   });
 }
 
-// Filter buttons
 document.querySelectorAll('.filter-btn').forEach(btn => {
   btn.addEventListener('click', function() {
     document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
@@ -365,7 +332,6 @@ document.querySelectorAll('.filter-btn').forEach(btn => {
   });
 });
 
-// Dark mode toggle
 const darkModeCheckbox = document.getElementById('dark-mode-checkbox');
 if (darkModeCheckbox) {
   const savedDarkMode = localStorage.getItem('darkMode');
@@ -385,29 +351,22 @@ if (darkModeCheckbox) {
   });
 }
 
-
 const searchInput = document.querySelector('.search');
 
-// Function to highlight matching text
 function highlightText(element, searchTerm) {
   if (!element || !searchTerm) return;
   
   const originalText = element.getAttribute('data-original-text') || element.innerHTML;
   
-  // Store original text if not already stored
   if (!element.hasAttribute('data-original-text')) {
     element.setAttribute('data-original-text', originalText);
   }
   
-  // Create regex for case-insensitive matching
   const regex = new RegExp(`(${searchTerm})`, 'gi');
-  
-  // Replace matches with highlighted spans
   const highlightedText = originalText.replace(regex, '<mark class="highlight">$1</mark>');
   element.innerHTML = highlightedText;
 }
 
-// Function to remove highlights
 function removeHighlights() {
   document.querySelectorAll('.task-item').forEach(item => {
     const taskText = item.querySelector('.task-text strong');
@@ -421,17 +380,62 @@ if (searchInput) {
   searchInput.addEventListener('input', function() {
     const searchTerm = this.value.toLowerCase().trim();
     const taskItems = document.querySelectorAll('.task-item');
-    
 
     if (searchInput) {
-  searchInput.addEventListener('input', function() {
-    const searchTerm = this.value.toLowerCase().trim();
-    const taskItems = document.querySelectorAll('.task-item');
-    
-   
+      searchInput.addEventListener('input', function() {
+        const searchTerm = this.value.toLowerCase().trim();
+        const taskItems = document.querySelectorAll('.task-item');
+        
+        removeHighlights();
+        
+        if (searchTerm === '') {
+          taskItems.forEach(item => {
+            item.style.display = 'flex';
+            item.classList.remove('search-match');
+          });
+          return;
+        }
+        
+        let firstMatch = null;
+        
+        taskItems.forEach(item => {
+          const taskText = item.querySelector('.task-text');
+          const taskTextStrong = item.querySelector('.task-text strong');
+          const priorityBadge = item.querySelector('.priority-badge');
+          const categoryBadge = item.querySelector('.category-badge');
+          
+          const taskName = taskText ? taskText.textContent.toLowerCase() : '';
+          const priority = priorityBadge ? priorityBadge.textContent.toLowerCase() : '';
+          const category = categoryBadge ? categoryBadge.textContent.toLowerCase() : '';
+          
+          const searchableText = taskName + ' ' + priority + ' ' + category;
+          
+          if (searchableText.includes(searchTerm)) {
+            item.style.display = 'flex';
+            item.classList.add('search-match');
+            
+            if (taskName.includes(searchTerm) && taskTextStrong) {
+              highlightText(taskTextStrong, searchTerm);
+            }
+
+            if (!firstMatch) firstMatch = item;
+
+            item.style.boxShadow = '0 0 10px rgba(33, 150, 243, 0.8)';
+          } else {
+            item.style.display = 'none';
+            item.classList.remove('search-match');
+            item.style.boxShadow = '';
+          }
+        });
+
+        if (firstMatch) {
+          firstMatch.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      });
+    }
+
     removeHighlights();
     
-    // If search is empty, show all tasks
     if (searchTerm === '') {
       taskItems.forEach(item => {
         item.style.display = 'flex';
@@ -440,89 +444,26 @@ if (searchInput) {
       return;
     }
     
-    let firstMatch = null; // store first match for scroll
-    
-    // Filter and highlight tasks
     taskItems.forEach(item => {
       const taskText = item.querySelector('.task-text');
       const taskTextStrong = item.querySelector('.task-text strong');
       const priorityBadge = item.querySelector('.priority-badge');
       const categoryBadge = item.querySelector('.category-badge');
       
-      // Get text content
       const taskName = taskText ? taskText.textContent.toLowerCase() : '';
       const priority = priorityBadge ? priorityBadge.textContent.toLowerCase() : '';
       const category = categoryBadge ? categoryBadge.textContent.toLowerCase() : '';
       
-      // Combine all searchable text
       const searchableText = taskName + ' ' + priority + ' ' + category;
       
       if (searchableText.includes(searchTerm)) {
         item.style.display = 'flex';
         item.classList.add('search-match');
         
-        // Highlight text
-        if (taskName.includes(searchTerm) && taskTextStrong) {
-          highlightText(taskTextStrong, searchTerm);
-        }
-
-        // Save the first matching task
-        if (!firstMatch) firstMatch = item;
-
-        // Add a glow effect to matched items
-        item.style.boxShadow = '0 0 10px rgba(33, 150, 243, 0.8)';
-      } else {
-        item.style.display = 'none';
-        item.classList.remove('search-match');
-        item.style.boxShadow = '';
-      }
-    });
-
-    // Scroll smoothly to first matching task
-    if (firstMatch) {
-      firstMatch.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
-  });
-}
-
-    // Remove previous highlights
-    removeHighlights();
-    
-    // If search is empty, show all tasks
-    if (searchTerm === '') {
-      taskItems.forEach(item => {
-        item.style.display = 'flex';
-        item.classList.remove('search-match');
-      });
-      return;
-    }
-    
-    // Filter and highlight tasks
-    taskItems.forEach(item => {
-      const taskText = item.querySelector('.task-text');
-      const taskTextStrong = item.querySelector('.task-text strong');
-      const priorityBadge = item.querySelector('.priority-badge');
-      const categoryBadge = item.querySelector('.category-badge');
-      
-      // Get text content from all relevant elements
-      const taskName = taskText ? taskText.textContent.toLowerCase() : '';
-      const priority = priorityBadge ? priorityBadge.textContent.toLowerCase() : '';
-      const category = categoryBadge ? categoryBadge.textContent.toLowerCase() : '';
-      
-      // Combine all searchable text
-      const searchableText = taskName + ' ' + priority + ' ' + category;
-      
-      // Show or hide based on match
-      if (searchableText.includes(searchTerm)) {
-        item.style.display = 'flex';
-        item.classList.add('search-match');
-        
-        // Highlight the matching text in task name
         if (taskName.includes(searchTerm) && taskTextStrong) {
           highlightText(taskTextStrong, searchTerm);
         }
         
-        // Add a subtle animation
         item.style.animation = 'searchPulse 0.5s ease';
         setTimeout(() => {
           item.style.animation = '';
@@ -546,7 +487,6 @@ if (searchInput) {
   });
 }
 
-// Drag and drop
 let draggedElement = null;
 
 function addDragListeners() {
@@ -601,7 +541,6 @@ function getDragAfterElement(container, y) {
   }, { offset: Number.NEGATIVE_INFINITY }).element;
 }
 
-// Confetti animation
 function triggerConfetti() {
   const canvas = document.getElementById('confetti-canvas');
   if (!canvas) return;
@@ -657,59 +596,26 @@ function triggerConfetti() {
   drawConfetti();
 }
 
-
 loadTasks();
 
-// ===== IST CLOCK =====
 function updateISTClock() {
-    const now = new Date();
-    
-    // Convert to IST (UTC +5:30)
-    const istOffset = 5.5 * 60 * 60 * 1000; // IST offset in milliseconds
-    const istTime = new Date(now.getTime() + istOffset + (now.getTimezoneOffset() * 60 * 1000));
-    
-    // Get hours, minutes, seconds
-    let hours = istTime.getHours();
-    let minutes = istTime.getMinutes();
-    let seconds = istTime.getSeconds();
-    
-    // Add leading zeros
-    hours = hours < 10 ? '0' + hours : hours;
-    minutes = minutes < 10 ? '0' + minutes : minutes;
-    seconds = seconds < 10 ? '0' + seconds : seconds;
-    
-    // Display time
-    const timeString = `${hours}:${minutes}:${seconds}`;
-    const clockElement = document.getElementById('ist-time');
-    
-    if (clockElement) {
-        clockElement.textContent = timeString;
-    }
+  const now = new Date();
+  const istOffset = 5.5 * 60 * 60 * 1000;
+  const istTime = new Date(now.getTime() + istOffset + (now.getTimezoneOffset() * 60 * 1000));
+  
+  let hours = istTime.getHours();
+  let minutes = istTime.getMinutes();
+  let seconds = istTime.getSeconds();
+  
+  hours = hours < 10 ? '0' + hours : hours;
+  minutes = minutes < 10 ? '0' + minutes : minutes;
+  seconds = seconds < 10 ? '0' + seconds : seconds;
+  
+  const timeString = `${hours}:${minutes}:${seconds}`;
+  const clockElement = document.getElementById('ist-time');
+  
+  if (clockElement) clockElement.textContent = timeString;
 }
 
-
 setInterval(updateISTClock, 1000);
-
-
 updateISTClock();
-
-
-
-
-//pagal
-// Highlight search state
-//searchInput.addEventListener('input', function() {
-  /*if (this.value.trim() !== '') {
-    this.classList.add('active-search');
-    icon.classList.add('searching');
-  } else {
-    this.classList.remove('active-search');
-    icon.classList.remove('searching');
-  }*/
-//});
-
-/* When user clears/blur
-searchInput.addEventListener('blur', function() {
-  this.classList.remove('active-search');
-  icon.classList.remove('searching');
-});*/
